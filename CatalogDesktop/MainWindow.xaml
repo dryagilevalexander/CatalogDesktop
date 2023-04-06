@@ -1,0 +1,60 @@
+﻿<Window x:Class="CatalogDesktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CatalogDesktop"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" x:Name="CitiesGrid" ItemsSource="{Binding Cities}" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" Margin="0,22,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding CityId}" Header="Id города" Width="80"/>
+                <DataGridTextColumn Binding="{Binding CityName}" Header="Название города" Width="120"/>
+                <DataGridTextColumn Binding="{Binding CountOfStreets}" Header="Количество улиц" Width="120"/>
+            </DataGrid.Columns>
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="CitiesGridDoubleClickRow"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+        </DataGrid>
+        <DataGrid AutoGenerateColumns="False" x:Name="StreetsGrid" ItemsSource="{Binding Streets}" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" Visibility="Collapsed" Margin="0,22,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding StreetId}" Header="Id улицы" Width="80"/>
+                <DataGridTextColumn Binding="{Binding StreetName}" Header="Название улицы" Width="120"/>
+                <DataGridTextColumn Binding="{Binding CountOfHouses}" Header="Количество домов" Width="120"/>
+            </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="StreetsGridDoubleClickRow"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+        <DataGrid AutoGenerateColumns="False" x:Name="HousesGrid" ItemsSource="{Binding Houses}" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" Visibility="Collapsed" Margin="0,22,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding HouseId}" Header="Id дома" Width="80"/>
+                <DataGridTextColumn Binding="{Binding NumberOfHouse}" Header="Номер дома" Width="120"/>
+                <DataGridTextColumn Binding="{Binding CountOfApartments}" Header="Количество квартир" Width="120"/>
+                <DataGridTextColumn Binding="{Binding ApartmentsArea}" Header="Общая площадь квартир" Width="170"/>
+            </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="HousesGridDoubleClickRow"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+        <DataGrid AutoGenerateColumns="False" x:Name="ApartmentsGrid" ItemsSource="{Binding Apartments}" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" Visibility="Collapsed" Margin="0,22,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ApartmentId}" Header="Id квартиры" Width="80"/>
+                <DataGridTextColumn Binding="{Binding ApartmentArea}" Header="Площадь квартиры" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock HorizontalAlignment="Left" x:Name="AreaLabel1" Margin="75,4,0,0" TextWrapping="Wrap" Text="Площадь от" VerticalAlignment="Top" Visibility="Collapsed"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Area1" Margin="146,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Collapsed" PreviewTextInput="Area1_PreviewTextInput"/>
+        <TextBlock HorizontalAlignment="Left" x:Name="AreaLabel2" Margin="270,5,0,0" TextWrapping="Wrap" Text="до" VerticalAlignment="Top" Visibility="Collapsed"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Area2" Margin="289,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Collapsed" PreviewTextInput="Area2_PreviewTextInput"/>
+        <Button Content="Отобрать" x:Name="AreaButton" HorizontalAlignment="Left" Margin="419,2,0,0" VerticalAlignment="Top" Visibility="Collapsed" Click="AreaButton_Click"/>
+        <Button Content="Назад" x:Name="BackButton" HorizontalAlignment="Left" Margin="3,1,0,0" VerticalAlignment="Top" ClickMode="Press" Visibility="Collapsed" Click="BackButton_Click"/>
+    </Grid>
+</Window>
